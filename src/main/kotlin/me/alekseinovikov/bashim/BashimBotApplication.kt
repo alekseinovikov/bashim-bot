@@ -1,4 +1,4 @@
-package me.alekseinovikov.bashim.bashimbot
+package me.alekseinovikov.bashim
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

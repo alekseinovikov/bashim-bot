@@ -17,6 +17,9 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("commons-codec:commons-codec:1.15")
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
