@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet id="quotes-read" author="Aleksei Novikov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="quotes_read"/>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE quotes_read
+            (
+                user_id    BIGINT      NOT NULL,
+                quote_hash VARCHAR(32) NOT NULL,
+                PRIMARY KEY (user_id, quote_hash)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
