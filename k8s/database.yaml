@@ -1,0 +1,51 @@
+# PostgreSQL StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bashim-bot-postgresql-db
+spec:
+  serviceName: bashim-bot-postgresql-db-service
+  selector:
+    matchLabels:
+      app: bashim-bot-postgresql-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bashim-bot-postgresql-db
+    spec:
+      containers:
+        - name: bashim-bot-postgresql-db
+          image: postgres:latest
+          volumeMounts:
+            - name: bashim-bot-postgresql-db-disk
+              mountPath: /data
+          env:
+            - name: POSTGRES_USER
+              value: root
+            - name: POSTGRES_PASSWORD
+              value: "123456"
+            - name: POSTGRES_DB
+              value: bot_db
+            - name: PGDATA
+              value: /data/pgdata
+      volumes:
+        - name: bashim-bot-postgresql-db-disk
+          hostPath:
+            path: /data/bot/postgresql
+            type: DirectoryOrCreate
+
+---
+
+# PostgreSQL StatefulSet Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: bashim-bot-postgresql-db-service
+spec:
+  selector:
+    app: bashim-bot-postgresql-db
+  type: NodePort
+  ports:
+    - port: 5432
+      targetPort: 5432
