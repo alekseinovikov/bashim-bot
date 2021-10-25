@@ -29,3 +29,8 @@ spec:
               value: "root"
             - name: DB_PASSWORD
               value: "123456"
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: bot-token
+                  key: bot-token
